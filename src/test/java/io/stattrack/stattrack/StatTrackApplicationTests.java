@@ -10,6 +10,7 @@ class StatTrackApplicationTests
     @Test
     void contextLoads()
     {
+
     }
 
 }
