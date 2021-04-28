@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
@@ -38,8 +39,10 @@ public class UserServiceTest {
         userService.addToDisplayed(game, elementsToAdd);
 
         String combinedString = elementsToAdd.get(0) + elementsToAdd.get(1);
+        HashMap<String, ArrayList<String>> expected = new HashMap<>();
+        expected.put(game, elementsToAdd);
 
-        Assert.assertEquals(combinedString, userModel.getDisplayStatistics());
+        Assert.assertEquals(expected, userModel.getDisplayStatistics());
 
     }
 }

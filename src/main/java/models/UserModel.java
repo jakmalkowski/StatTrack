@@ -1,6 +1,7 @@
 package models;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -56,11 +57,11 @@ public class UserModel {
         this.accCreationInstant = accCreationInstant;
     }
 
-    public HashMap<String, HashMap<String, ?>> getDisplayStatistics() {
+    public HashMap<String, ArrayList<String>> getDisplayStatistics() {
         return displayStatistics;
     }
 
-    public void setDisplayStatistics(HashMap<String, HashMap<String, ?>> displayStatistics) {
+    public void setDisplayStatistics(HashMap<String, ArrayList<String>> displayStatistics) {
         this.displayStatistics = displayStatistics;
     }
 
@@ -92,7 +93,7 @@ public class UserModel {
     String email;
     HashMap<String, String> accounts;
     Instant accCreationInstant;
-    HashMap<String, HashMap<String, ?>> displayStatistics;
+    HashMap<String, ArrayList<String>> displayStatistics;
     Instant updateInstant;
     HashMap<String, HashMap<String, ?>> statistics;
     String bio;
