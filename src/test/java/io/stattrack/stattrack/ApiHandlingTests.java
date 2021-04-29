@@ -29,7 +29,17 @@ public class ApiHandlingTests {
             exception.printStackTrace();
         }
     }
-
+    @Test
+    public void getUserEncryptedPUUID2(){
+        RiotApiHandler userTest=new RiotApiHandler();
+        try {
+            String encryptedId = userTest.getEncryptedPUUID("8f9zu86yj87xgh76", "eun1");
+            Assert.assertNotEquals("pkJUgeuYD1wH6LqRsGmUYATe3F1T3NltD_s2wkDTzgKG8wdF4dABME5lH4yN05LAgCjzdg18BCmp5w",encryptedId);
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
    @Test
     public void getMatchDetails(){
         try {
