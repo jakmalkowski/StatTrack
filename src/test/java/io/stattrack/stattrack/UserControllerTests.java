@@ -34,7 +34,7 @@ public class UserControllerTests {
     }
 
     @Test
-    public void linkAccount() {
+    public void linkCSGOAccountKey() {
         HashMap<String, String> accounts = new HashMap<>();
         String game = "CSGO";
         String account = "DoomSlayer420";
@@ -43,12 +43,83 @@ public class UserControllerTests {
         userController.linkAccount(game, account);
 
         Assert.assertTrue(this.userModel.getAccounts().containsKey(game));          //Check if key was inserted
+    }
+
+    @Test
+    public void linkCSGOAccountValue() {
+        HashMap<String, String> accounts = new HashMap<>();
+        String game = "CSGO";
+        String account = "DoomSlayer420";
+
+        accounts.put(game, account);
+        userController.linkAccount(game, account);
+
         Assert.assertTrue(this.userModel.getAccounts().containsValue(account));     //Check if value was inserted
+    }
+
+    @Test
+    public void linkCSGOAccountMapping() {
+        HashMap<String, String> accounts = new HashMap<>();
+        String game = "CSGO";
+        String account = "DoomSlayer420";
+
+        accounts.put(game, account);
+        userController.linkAccount(game, account);
+
         Assert.assertEquals(accounts.get(game), this.userModel.getAccounts().get(game));   //Check if mapping is correct
     }
 
     @Test
-    public void unlinkAccount() {
+    public void linkLOLAccountKey() {
+        HashMap<String, String> accounts = new HashMap<>();
+        String game = "LOL";
+        String account = "Amon Gus";
+
+        accounts.put(game, account);
+        userController.linkAccount(game, account);
+
+        Assert.assertTrue(this.userModel.getAccounts().containsKey(game));          //Check if key was inserted
+    }
+
+    @Test
+    public void linkLOLAccountValue() {
+        HashMap<String, String> accounts = new HashMap<>();
+        String game = "LOL";
+        String account = "Amon Gus";
+
+        accounts.put(game, account);
+        userController.linkAccount(game, account);
+
+        Assert.assertTrue(this.userModel.getAccounts().containsValue(account));     //Check if value was inserted
+    }
+
+    @Test
+    public void linkLOLAccountMapping() {
+        HashMap<String, String> accounts = new HashMap<>();
+        String game = "LOL";
+        String account = "Amon Gus";
+
+        accounts.put(game, account);
+        userController.linkAccount(game, account);
+
+        Assert.assertEquals(accounts.get(game), this.userModel.getAccounts().get(game));   //Check if mapping is correct
+    }
+
+    @Test
+    public void unlinkAccountKeyDelete() {
+        String game1 = "CSGO", game2 = "LOL";
+        String account1 = "DoomSlayer420", account2 = "Anomaly";
+
+        userController.linkAccount(game1, account1);
+        userController.linkAccount(game2, account2);
+
+        userController.unlinkAccount(game1, account1);
+
+        Assert.assertFalse(this.userModel.getAccounts().containsKey(game1));                //Check if key was deleted
+    }
+
+    @Test
+    public void unlinkAccountMapping() {
         String game1 = "CSGO", game2 = "LOL";
         String account1 = "DoomSlayer420", account2 = "Anomaly";
         HashMap<String, String> accounts = new HashMap<>();
@@ -61,7 +132,6 @@ public class UserControllerTests {
         userController.unlinkAccount(game1, account1);
         accounts.remove(game1);
 
-        Assert.assertFalse(this.userModel.getAccounts().containsKey(game1));                //Check if key was deleted
         Assert.assertEquals(accounts.get(game2), this.userModel.getAccounts().get(game2)); //Check if other mapping is correct
     }
 
