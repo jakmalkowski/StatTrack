@@ -1,17 +1,53 @@
 package controllers;
 
+import models.UserModel;
 import models.UserService;
 
-public class UserControllerImpl<UserModel> {
-    private UserService UserService;
+public class UserControllerImpl implements UserController {
+    UserService userService;
 //    private UserView UserView;
 
-    public void linkAccount(String game, String account) {}
-    public void unlinkAccount(String game, String account) {}
-    public void createUser(String login, String password, String email) {}
-    public void logIn(String login, String password) {}
-    public void logOut(){}
-    public void userPage(){}
-    public void settings(String someString) {}      //What String?
-    public void mainPage() {}
+    public UserControllerImpl (UserService userService) {
+        this.userService = userService;
+    }
+
+    @Override
+    public void linkAccount(String game, String account) {
+
+    }
+
+    @Override
+    public void unlinkAccount(String game, String account) {
+
+    }
+
+    @Override
+    public void createUser(String login, String password, String email) {
+
+    }
+
+    @Override
+    public void logIn(String login, String password) {
+
+    }
+
+    @Override
+    public void logOut(){
+
+    }
+
+    @Override
+    public void userPage(){
+
+    }
+
+    @Override
+    public void settings(String someString) {          //What String?
+
+    }
+
+    @Override
+    public void mainPage() {
+
+    }
 }
