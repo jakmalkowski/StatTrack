@@ -84,28 +84,12 @@ public class UserControllerTests {
 
     @Test
     public void logIn() {
-
+            //session based test
     }
 
     @Test
     public void logOut(){
-
+            //session based test
     }
-
-    @Test
-    public void userPage(){
-
-    }
-
-    @Test
-    public void settings() {
-
-    }
-
-    @Test
-    public void mainPage() {
-
-    }
-
 
 }
