@@ -11,7 +11,6 @@ public class RiotApiHandler {
 
     }
     String getPUUid(String summonerName,String region){
-        String sampleString = "lol";
-        return sampleString;
+        String
     }
 }
