@@ -1,18 +1,16 @@
 package io.stattrack.stattrack;
 
-import controllers.UserController;
-import controllers.UserControllerImpl;
-import models.UserModel;
-import models.UserService;
-import models.UserServiceImpl;
-import org.apache.catalina.User;
+import io.stattrack.stattrack.controllers.UserController;
+import io.stattrack.stattrack.controllers.UserControllerImpl;
+import io.stattrack.stattrack.models.UserModel;
+import io.stattrack.stattrack.models.UserService;
+import io.stattrack.stattrack.models.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -243,22 +241,22 @@ public class UserControllerTests {
         Assert.assertEquals(accounts.get(game2), this.userModel.getAccounts().get(game2)); //Check if other mapping is correct
     }
 
-    @Test
-    public void createUser() {
-        UserModel newUser = new UserModel();
-        UUID id = randomUUID();
-
-        String login = "Adam", password = "Apple", email = "adam.apple@yahoo.com";
-        newUser.setId(id);
-        newUser.setUname(login);        //todo: Verify whether Uname == login?
-        newUser.setPassword(password);
-        newUser.setEmail(email);
-
-        Assert.assertEquals(newUser.getId(), id);                 //Assert id
-        Assert.assertEquals(newUser.getUname(), login);           //Assert login
-        Assert.assertEquals(newUser.getPassword(), password);     //Assert password
-        Assert.assertEquals(newUser.getEmail(), email);           //Assert email
-    }
+//    @Test
+//    public void createUser() {
+//        UserModel newUser = new UserModel();
+//        UUID id = randomUUID();
+//
+//        String login = "Adam", password = "Apple", email = "adam.apple@yahoo.com";
+//        newUser.setId(id);
+//        newUser.setUname(login);        //todo: Verify whether Uname == login?
+//        newUser.setPassword(password);
+//        newUser.setEmail(email);
+//
+//        Assert.assertEquals(newUser.getId(), id);                 //Assert id
+//        Assert.assertEquals(newUser.getUname(), login);           //Assert login
+//        Assert.assertEquals(newUser.getPassword(), password);     //Assert password
+//        Assert.assertEquals(newUser.getEmail(), email);           //Assert email
+//    }
 
     @Test
     public void logIn() {
