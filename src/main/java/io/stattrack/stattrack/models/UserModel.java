@@ -1,11 +1,11 @@
 package io.stattrack.stattrack.models;
 
+import io.stattrack.stattrack.dto.UserDto;
 import org.springframework.data.annotation.Id;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.UUID;
 
 public class UserModel {
 
@@ -24,10 +24,17 @@ public class UserModel {
     public UserModel() {}
 
     public UserModel(String uname, String password, String email) {
-        super();
+//        super();
         this.uname = uname;
         this.password = password;
         this.email = email;
+    }
+
+    public UserModel(UserDto userDto) {
+//        super();
+        this.uname = userDto.getUname();
+        this.password = userDto.getPassword();
+        this.email = userDto.getEmail();
     }
 
     public String getId() {
