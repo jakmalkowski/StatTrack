@@ -1,7 +1,6 @@
-package controllers;
+package io.stattrack.stattrack.controllers;
 
-import models.UserModel;
-import models.UserService;
+import io.stattrack.stattrack.services.UserService;
 
 public class UserControllerImpl implements UserController {
     UserService userService;

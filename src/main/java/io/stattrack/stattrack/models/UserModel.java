@@ -1,19 +1,47 @@
-package models;
+package io.stattrack.stattrack.models;
+
+import io.stattrack.stattrack.dto.UserDto;
+import org.springframework.data.annotation.Id;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.UUID;
 
 public class UserModel {
-    UUID id;
-    String uname;
 
-    public UUID getId() {
+    @Id
+    String id;
+    String uname;
+    String password;
+    String email;
+    HashMap<String, String> accounts;
+    Instant accCreationInstant;
+    HashMap<String, ArrayList<String>> displayStatistics;
+    Instant updateInstant;
+    HashMap<String, HashMap<String, ?>> statistics;
+    String bio;
+
+    public UserModel() {}
+
+    public UserModel(String uname, String password, String email) {
+//        super();
+        this.uname = uname;
+        this.password = password;
+        this.email = email;
+    }
+
+    public UserModel(UserDto userDto) {
+//        super();
+        this.uname = userDto.getUname();
+        this.password = userDto.getPassword();
+        this.email = userDto.getEmail();
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -89,12 +117,4 @@ public class UserModel {
         this.bio = bio;
     }
 
-    String password;
-    String email;
-    HashMap<String, String> accounts;
-    Instant accCreationInstant;
-    HashMap<String, ArrayList<String>> displayStatistics;
-    Instant updateInstant;
-    HashMap<String, HashMap<String, ?>> statistics;
-    String bio;
 }

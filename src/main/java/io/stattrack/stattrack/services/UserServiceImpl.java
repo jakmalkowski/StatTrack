@@ -1,4 +1,6 @@
-package models;
+package io.stattrack.stattrack.services;
+
+import io.stattrack.stattrack.models.UserModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

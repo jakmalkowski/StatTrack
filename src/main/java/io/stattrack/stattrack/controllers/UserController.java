@@ -1,6 +1,4 @@
-package controllers;
-
-import models.UserService;
+package io.stattrack.stattrack.controllers;
 
 public interface UserController {
 
