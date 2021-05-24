@@ -1,5 +1,7 @@
 package io.stattrack.stattrack;
 
+import DataTransferObjects.LeagueMatch;
+import DataTransferObjects.PlayerStats;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -65,11 +67,22 @@ public final class RiotApiHandler {
         Map<String,String> map=gson.fromJson(json,new TypeToken<Map<String,String>>(){}.getType());
         return map.get("puuid");
     }
-    public String getMatchDetails(String matchID,String region){
+    LeagueMatch  getMatchDetails(String matchID,String region){
         //Hardcoded for now
         String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
-        return json;
+        return new LeagueMatch(json);
+    }
+    PlayerStats getPlayerMatchStats(String summonerName,String matchID,String region){
+        String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
+        String json=getGsonBase(requestBase);
+        LeagueMatch match = new LeagueMatch(json);
+        for( PlayerStats player : match.playerStats){
+            if(player.summonerName.equals(summonerName)){
+                return player;
+            }
+        }
+        return null;
     }
     String getGsonBase(String requestBase){
         try{

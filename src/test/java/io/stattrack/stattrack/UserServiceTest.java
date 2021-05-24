@@ -1,11 +1,9 @@
 package io.stattrack.stattrack;
 
-import models.UserModel;
-import models.UserService;
-import models.UserServiceImpl;
-import org.apache.catalina.User;
+import io.stattrack.stattrack.models.UserModel;
+import io.stattrack.stattrack.services.UserService;
+import io.stattrack.stattrack.services.UserServiceImpl;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

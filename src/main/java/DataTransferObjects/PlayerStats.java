@@ -1,33 +1,34 @@
 package DataTransferObjects;
 
+
 import com.google.gson.internal.LinkedTreeMap;
 
 public class PlayerStats {
-    String summonerName;
-    String puuID;
-    String position;
-    String championName;
-    boolean win;
+    public String summonerName;
+    public String puuID;
+    public String position;
+    public String championName;
+    public Boolean win;
     //Basic stats
-    Double assists;
-    Double kills;
-    Double deaths;
-    Double goldEarned;
-    Double wardsPlaced;
-    Double visionScore;
-    Double controlWards;
-    Double wardsDestroyed;
+    public Double assists;
+    public Double kills;
+    public Double deaths;
+    public Double goldEarned;
+    public Double wardsPlaced;
+    public Double visionScore;
+    public Double controlWards;
+    public Double wardsDestroyed;
     //Multikill stats
-    Double doubleKills;
-    Double trippleKills;
-    Double quadraKills;
-    Double pentaKills;
+    public Double doubleKills;
+    public Double trippleKills;
+    public Double quadraKills;
+    public Double pentaKills;
     //Damage profile
-    Double physicalDamageDealtToChapions;
-    Double trueDamageDealtToChampions;
-    Double magicDamageDealtToChampions;
-    Double totalHeal;
-    Double totalHealsOnTeammates;
+    public Double physicalDamageDealtToChapions;
+    public Double trueDamageDealtToChampions;
+    public Double magicDamageDealtToChampions;
+    public Double totalHeal;
+    public Double totalHealsOnTeammates;
 
     PlayerStats(LinkedTreeMap<String,Object> data){
         //Setting Strings
@@ -35,6 +36,7 @@ public class PlayerStats {
         this.puuID=(String)data.get("puuid");
         this.position=(String)data.get("individualPosition");
         this.championName=(String)data.get("championName");
+        this.win=(Boolean)data.get("win");
         //Setting doubles
         this.assists=(Double) data.get("assists");
         this.kills=(Double) data.get("kills");
