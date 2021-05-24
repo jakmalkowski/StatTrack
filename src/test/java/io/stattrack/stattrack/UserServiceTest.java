@@ -1,8 +1,8 @@
 package io.stattrack.stattrack;
 
 import io.stattrack.stattrack.models.UserModel;
-import io.stattrack.stattrack.models.UserService;
-import io.stattrack.stattrack.models.UserServiceImpl;
+import io.stattrack.stattrack.services.UserService;
+import io.stattrack.stattrack.services.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

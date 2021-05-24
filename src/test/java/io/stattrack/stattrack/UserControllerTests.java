@@ -3,8 +3,8 @@ package io.stattrack.stattrack;
 import io.stattrack.stattrack.controllers.UserController;
 import io.stattrack.stattrack.controllers.UserControllerImpl;
 import io.stattrack.stattrack.models.UserModel;
-import io.stattrack.stattrack.models.UserService;
-import io.stattrack.stattrack.models.UserServiceImpl;
+import io.stattrack.stattrack.services.UserService;
+import io.stattrack.stattrack.services.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashMap;
-import java.util.UUID;
-
-import static java.util.UUID.randomUUID;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserControllerTests {
