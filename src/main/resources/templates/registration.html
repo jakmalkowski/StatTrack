@@ -1,18 +1,100 @@
-<html xmlns:th="https://thymeleaf.org">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>StatTrack</title>
+    <link th:href="@{/css/mdb.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/custom/login.css}" rel="stylesheet" />
+</head>
+<div th:fragment="navbar">
 
-<form action="#" th:action="@{/register}" th:object="${user}" method="post">
-    <label for="uname">Name</label>
-    <input type="text" th:field="*{uname}" id="uname" placeholder="Name">
-    <span th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></span>
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <label for="password">Password</label>
-    <input type="password" th:field="*{password}" id="password">
-    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-    <label for="passwordRepeat">Password repeat</label>
-    <input type="password" th:field="*{passwordRepeat}" id="passwordRepeat">
-    <span th:if="${#fields.hasErrors('passwordRepeat')}" th:errors="*{passwordRepeat}"></span>
-    <input type="submit" value="register">
-</form>
+</div>
+</html>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <img
+                        th:src="@{/images/logo.png}"
+                        height="50"
+                        loading="lazy"
+                        alt=""
+                />
+            </a>
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+            </ul>
+            <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+
+<div class="container main-page">
+    <div class="row">
+        <div class="col-6">
+            <div class="login-form-1 lower">
+                <form th:action="@{/register}" th:object="${user}" method="post">
+                    <h3 class="text-center">Register</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Email *" value="" th:field="*{email}" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Username *" value="" th:field="*{uname}" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Your Password *" value="" th:field="*{password}" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Repeat your Password *" value="" th:field="*{passwordRepeat}" />
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" class="btnSubmit" value="Register" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-6 d-flex justify-content-center text-center">
+            <div class="goodText">
+                <h1>StatTrack</h1>
+                <p>Application for tracking your statistics in online games</p>
+            </div>
+            <img
+                    th:src="@{/images/yasuoo.png}"
+                    loading="lazy"
+                    class="yasuo"
+            />
+        </div>
+    </div>
+
+</div>
+
 </html>

@@ -1,6 +1,7 @@
 package io.stattrack.stattrack.controllers;
 
 import io.stattrack.stattrack.services.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
 
 public class UserControllerImpl implements UserController {
     UserService userService;
