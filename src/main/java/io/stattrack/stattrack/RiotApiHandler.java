@@ -16,7 +16,7 @@ import java.util.*;
 //Singleton with thread safety
 public final class RiotApiHandler {
     private static volatile RiotApiHandler instance;
-    static final String tempKey="RGAPI-7c39cbe6-110c-4ac9-a02d-4c43e4667ca2";
+    static final String tempKey="RGAPI-dfb4ee5e-266d-4b39-8f02-a05d25d8c95c";
 
     public RiotApiHandler(){
     }
@@ -35,12 +35,12 @@ public final class RiotApiHandler {
     }
 
 
-    String nameCorrection(String summonerName){
+    public String nameCorrection(String summonerName){
         return summonerName.toLowerCase(Locale.ROOT).replaceAll(" ","");
     }
 
 
-    String getEncryptedSummID(String summonerName,String region){
+    public String getEncryptedSummID(String summonerName,String region){
         //Hardcoded for now, I'll set it up later, consists of https://{server}.api{...}/by-name/{SummonerName}{ApiKey}
         String correctSummoner = nameCorrection(summonerName);
         String requestBase="https://"+region+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+correctSummoner+"?api_key="+tempKey;
@@ -49,15 +49,15 @@ public final class RiotApiHandler {
         Map<String,String> map=gson.fromJson(json,new TypeToken<Map<String,String>>(){}.getType());
         return map.get("id");
     }
-    String getRankedInfo(String region,String summonerName){
+    public String getRankedInfo(String region,String summonerName){
         //I've gotta implement the entire DTO interface to work with this one
         String requestBase="https://"+region+".api.riotgames.com/lol/league/v4/entries/by-summoner/"+getEncryptedSummID(summonerName,region)+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
         Gson gson = new Gson();
         return json;
     }
-    String getEncryptedPUUID(String summonerName,String region)
-    {
+
+    public String getEncryptedPUUID(String summonerName,String region) {
 
         String correctSummoner=summonerName.toLowerCase(Locale.ROOT).replaceAll(" ","");
         //Hardcoded for now, I'll set it up later, consists of https://{server}.api{...}/by-name/{SummonerName}{ApiKey}
@@ -67,24 +67,30 @@ public final class RiotApiHandler {
         Map<String,String> map=gson.fromJson(json,new TypeToken<Map<String,String>>(){}.getType());
         return map.get("puuid");
     }
-    LeagueMatch  getMatchDetails(String matchID,String region){
+
+    public LeagueMatch  getMatchDetails(String matchID,String region){
         //Hardcoded for now
+        if (region.equals("eun1"))
+            region = "europe";
         String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
         return new LeagueMatch(json);
     }
-    PlayerStats getPlayerMatchStats(String summonerName,String matchID,String region){
+
+    public PlayerStats getPlayerMatchStats(String summonerName,String matchID,String region){
+        if (region.equals("eun1"))
+            region = "europe";
         String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
         LeagueMatch match = new LeagueMatch(json);
         for( PlayerStats player : match.playerStats){
-            if(player.summonerName.equals(summonerName)){
+            if(player.getSummonerName().equals(summonerName)){
                 return player;
             }
         }
         return null;
     }
-    String getGsonBase(String requestBase){
+    public String getGsonBase(String requestBase){
         try{
             StringBuilder json= new StringBuilder();
             URL url=new URL(requestBase);
@@ -102,11 +108,11 @@ public final class RiotApiHandler {
         }
         return "";
     }
-    ArrayList<String> getMatchlist(String summonerName,String region)
+    public ArrayList<String> getMatchlist(String summonerName,String region)
     {
-        String json;
-        String requestBase="https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/"+getEncryptedPUUID(summonerName,region)+"/ids?start=0&count=20&api_key="+tempKey;
-        json=getGsonBase(requestBase);
+        String correctSummoner = nameCorrection(summonerName);
+        String requestBase="https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/"+getEncryptedPUUID(summonerName,region)+"/ids?start=0&count=30&api_key="+tempKey;
+        String json=getGsonBase(requestBase);
         Gson gson=new Gson();
         return gson.fromJson(json,new TypeToken<ArrayList<String>>(){}.getType());
     }
