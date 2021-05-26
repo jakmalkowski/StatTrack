@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
-<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
+<head>
     <meta charset="UTF-8">
-    <title>StatTrack</title>
-    <link th:href="@{/css/mdb.min.css}" rel="stylesheet" />
-    <link th:href="@{/css/custom/login.css}" rel="stylesheet" />
+    <title>Title</title>
 </head>
-<div th:fragment="navbar">
-
-</div>
-</html>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar">
     <!-- Container wrapper -->
     <div class="container-fluid">
@@ -33,10 +26,10 @@
             <!-- Navbar brand -->
             <a class="navbar-brand mt-2 mt-lg-0" href="#">
                 <img
-                        th:src="@{/images/logo.png}"
-                        height="50"
-                        loading="lazy"
+                        src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
+                        height="15"
                         alt=""
+                        loading="lazy"
                 />
             </a>
             <!-- Left links -->
@@ -59,25 +52,5 @@
     </div>
     <!-- Container wrapper -->
 </nav>
-
-<div class="container main-page">
-    <div class="row">
-        <div class="col-6 d-flex justify-content-center text-center" >
-            <h1 th:text="logged as + ${user?.uname}"></h1>
-        </div>
-        <div class="col-6 d-flex justify-content-center text-center">
-            <div class="goodText">
-                <h1>StatTrack</h1>
-                <p>Application for tracking your statistics in online games</p>
-            </div>
-            <img
-                    th:src="@{/images/yasuoo.png}"
-                    loading="lazy"
-                    class="yasuo"
-            />
-        </div>
-    </div>
-
-</div>
-
+</body>
 </html>
