@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
         gameAccount.setUsername(newAccount);
         if(user.getGameAccounts() != null)
             if(user.getGameAccounts().containsKey(newGame))
-                if(user.getGameAccounts().containsValue(gameAccount))
+                if(user.getGameAccounts().get(newGame).getUsername().equals(newAccount))
                     return true;
 
         return false;
