@@ -87,9 +87,13 @@ public class UserDto {
         this.tempGame = tempGame;
     }
 
-//    public void setTempAccount(String tempAccount) {
-//        this.tempAccount = tempAccount;
-//    }
+    public void setTempAccount(String tempAccount) {
+        this.tempAccount = tempAccount;
+    }
+
+    public void setTempRegion(String tempRegion) {
+        this.tempRegion = tempRegion;
+    }
 
     public GameAccount getTempAccount(String game){return this.gameAccounts.get(game); }
 }
