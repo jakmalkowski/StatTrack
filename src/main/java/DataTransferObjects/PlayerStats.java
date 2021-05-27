@@ -30,7 +30,7 @@ public class PlayerStats {
     Double totalHeal;
     Double totalHealsOnTeammates;
 
-    PlayerStats(LinkedTreeMap<String, Object> data) {
+    public PlayerStats(LinkedTreeMap<String, Object> data) {
         //Setting Strings
         this.summonerName = (String) data.get("summonerName");
         this.puuID = (String) data.get("puuid");

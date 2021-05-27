@@ -52,27 +52,30 @@ public class UserModel {
     }
 
     public void updateLoLStatistics(){
+        if(this.statistics==null){
+            this.statistics=new HashMap<>();
+        }
         RiotApiHandler riotApiHandler = RiotApiHandler.getInstance();
         if(accounts.get("LeagueOfLegends")==null){
             return;
         }
         this.updateInstant = Instant.now();
-        GameAccount acc = accounts.get("League of Legends");
+        GameAccount acc = accounts.get("LeagueOfLegends");
         ArrayList<String> last20matches = riotApiHandler.getMatchlist(acc.getUsername(),acc.getRegion());
         for(String s : last20matches){
             if(!statistics.containsKey(s)){
                 statistics.put(s,riotApiHandler.getPlayerMatchStats(acc.getUsername(),s,acc.getRegion()));
             }
         }
-        double avgKills=0;
-        double avgDeaths=0;
-        double avgAssists=0;
-        double avgVisionScore=0;
-        double avgDamageToChampions=0;
-        double avgHealing=0;
+        float avgKills=0;
+        float avgDeaths=0;
+        float avgAssists=0;
+        float avgVisionScore=0;
+        float avgDamageToChampions=0;
+        float avgHealing=0;
         ArrayList<String> mostPopularRole = new ArrayList<>();
         ArrayList<String> mostPopularChampion=new ArrayList<>();
-        double winrate=0;
+        float winrate=0;
         for(Map.Entry<String,PlayerStats> s : statistics.entrySet()){
             PlayerStats temp = s.getValue();
             avgKills+=temp.getKills();
@@ -83,6 +86,7 @@ public class UserModel {
                     +temp.getTrueDamageDealtToChampions()+temp.getPhysicalDamageDealtToChapions();
             avgHealing+=temp.getTotalHealsOnTeammates();
             mostPopularRole.add(temp.getChampionName());
+            mostPopularChampion.add((temp.getChampionName()));
             if(temp.getWin())
                 winrate++;
         }
@@ -97,7 +101,7 @@ public class UserModel {
         this.last30Games.setAvgVisionScore(avgVisionScore/30);
         this.last30Games.setMostPopularChampion(mostPopular(mostPopularChampion));
         this.last30Games.setMostPopularRole(mostPopular(mostPopularRole));
-        this.last30Games.setKDA((avgKills+avgAssists/avgDeaths));
+        this.last30Games.setKDA((avgKills+avgAssists/avgDeaths)/30);
         this.last30Games.setWinrate(winrate/30);
     }
     String mostPopular(ArrayList<String> list){

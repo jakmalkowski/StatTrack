@@ -1,70 +1,70 @@
 package io.stattrack.stattrack.dto;
 
 public class RecentGames{
-    double KDA;
-    double avgKills;
-    double avgDeaths;
-    double avgAssists;
-    double avgVisionScore;
-    double avgDamageToChampions;
-    double avgHealing;
+    float KDA;
+    float avgKills;
+    float avgDeaths;
+    float avgAssists;
+    float avgVisionScore;
+    float avgDamageToChampions;
+    float avgHealing;
     String mostPopularRole;
     String mostPopularChampion;
-    double winrate;
+    float winrate;
 
-    public double getKDA() {
+    public float getKDA() {
         return KDA;
     }
 
-    public void setKDA(double KDA) {
+    public void setKDA(float KDA) {
         this.KDA = KDA;
     }
 
-    public double getAvgKills() {
+    public float getAvgKills() {
         return avgKills;
     }
 
-    public void setAvgKills(double avgKills) {
+    public void setAvgKills(float avgKills) {
         this.avgKills = avgKills;
     }
 
-    public double getAvgDeaths() {
+    public float getAvgDeaths() {
         return avgDeaths;
     }
 
-    public void setAvgDeaths(double avgDeaths) {
+    public void setAvgDeaths(float avgDeaths) {
         this.avgDeaths = avgDeaths;
     }
 
-    public double getAvgAssists() {
+    public float getAvgAssists() {
         return avgAssists;
     }
 
-    public void setAvgAssists(double avgAssists) {
+    public void setAvgAssists(float avgAssists) {
         this.avgAssists = avgAssists;
     }
 
-    public double getAvgVisionScore() {
+    public float getAvgVisionScore() {
         return avgVisionScore;
     }
 
-    public void setAvgVisionScore(double avgVisionScore) {
+    public void setAvgVisionScore(float avgVisionScore) {
         this.avgVisionScore = avgVisionScore;
     }
 
-    public double getAvgDamageToChampions() {
+    public float getAvgDamageToChampions() {
         return avgDamageToChampions;
     }
 
-    public void setAvgDamageToChampions(double avgDamageToChampions) {
+    public void setAvgDamageToChampions(float avgDamageToChampions) {
         this.avgDamageToChampions = avgDamageToChampions;
     }
 
-    public double getAvgHealing() {
+    public float getAvgHealing() {
         return avgHealing;
     }
 
-    public void setAvgHealing(double avgHealing) {
+    public void setAvgHealing(float avgHealing) {
         this.avgHealing = avgHealing;
     }
 
@@ -84,11 +84,11 @@ public class RecentGames{
         this.mostPopularChampion = mostPopularChampion;
     }
 
-    public double getWinrate() {
+    public float getWinrate() {
         return winrate;
     }
 
-    public void setWinrate(double winrate) {
+    public void setWinrate(float winrate) {
         this.winrate = winrate;
     }
 }
