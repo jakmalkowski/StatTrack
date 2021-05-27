@@ -17,9 +17,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserControllerImpl implements UserController {
 
-    @Autowired
+  @Autowired
     UserRepository userRepository;
-
+import io.stattrack.stattrack.services.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
     public UserControllerImpl (UserRepository userRepository) {
         this.userRepository = userRepository;
     }

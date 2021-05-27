@@ -1,0 +1,30 @@
+body {
+    background: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%) fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/*Placeholder footer */
+footer{
+    position: fixed;
+    padding: 10px 10px 0 10px;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+/*NAVBAR*/
+.navbar {
+    height: 3.8rem;
+    padding: 0.0rem;
+    font-size: 1.0rem;
+}
+.navbar-brand{
+    font-size: 2.1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.navbar-right {
+    float: right;
+}
