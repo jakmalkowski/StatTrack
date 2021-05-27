@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class UserModel {
 
@@ -14,7 +15,7 @@ public class UserModel {
     String uname;
     String password;
     String email;
-    HashMap<String, String> accounts;
+    HashMap<String, List<String>> accounts;
     Instant accCreationInstant;
     HashMap<String, ArrayList<String>> displayStatistics;
     Instant updateInstant;
@@ -69,11 +70,11 @@ public class UserModel {
         this.email = email;
     }
 
-    public HashMap<String, String> getAccounts() {
+    public HashMap<String, List<String>> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(HashMap<String, String> accounts) {
+    public void setAccounts(HashMap<String, List<String>> accounts) {
         this.accounts = accounts;
     }
 
