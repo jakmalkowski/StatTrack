@@ -25,6 +25,7 @@ public class UserControllerImpl implements UserController {
 
     @GetMapping(value="/linkaccount")
     public String linkAccountPage(Model model, HttpSession session) {
+        if (!isUserLogged(session)) return "redirect:/";
 
         UserDto user = new UserDto();
         model.addAttribute("user", user);
@@ -50,6 +51,7 @@ public class UserControllerImpl implements UserController {
 
     @GetMapping(value="/unlinkaccount")
     public String unlinkAccountPage(Model model, HttpSession session) {
+        if (!isUserLogged(session)) return "redirect:/";
 
         UserDto user = new UserDto();
         model.addAttribute("user", user);
@@ -100,5 +102,10 @@ public class UserControllerImpl implements UserController {
     @Override
     public void mainPage() {
 
+    }
+
+    private boolean isUserLogged(HttpSession httpSession) {
+        SessionService sessionService = new SessionService(httpSession);
+        return sessionService.getUserDto() != null;
     }
 }
