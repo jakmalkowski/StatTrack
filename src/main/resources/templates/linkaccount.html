@@ -7,8 +7,18 @@
 <form action="#" th:action="@{/linkaccount}" th:object="${user}" method="post">
     <label for="tempGame">Game</label>
     <input type="text" th:field="*{tempGame}" id="tempGame">
+
     <label for="tempAccount">Account</label>
     <input type="text" th:field="*{tempAccount}" id="tempAccount">
+
+    <label for="tempRegion">Region</label>
+    <select name="Region" th:field="*{tempRegion}" id="tempRegion">
+        <option value="EUN1">EUN1</option>
+        <option value="EUW1">EUW1</option>
+        <option value="NA1">NA1</option>
+        <option value="KR">KR</option>
+        <option value="RU">RU</option>
+    </select>
     <input type="submit" value="Link Account">
-</form>
+    </form>
 </html>

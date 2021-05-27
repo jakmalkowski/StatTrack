@@ -154,7 +154,6 @@ public class UserModel {
         this.email = email;
     }
 
-
     public HashMap<String, GameAccount> getAccounts() {
         return accounts;
     }
@@ -202,5 +201,6 @@ public class UserModel {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
 
 }
