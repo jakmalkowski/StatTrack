@@ -13,7 +13,8 @@ public class UserDto {
     private String email;
     private String tempGame;
     private String tempAccount;
-    private HashMap<String, List<String>> gameAccounts;
+    private String tempRegion;
+    private HashMap<String, GameAccount> gameAccounts;
 
 
 
@@ -54,9 +55,9 @@ public class UserDto {
         this.password = password;
     }
 
-    public HashMap<String, List<String>> getGameAccounts() { return gameAccounts; }
+    public HashMap<String, GameAccount> getGameAccounts() { return gameAccounts; }
 
-    public void setGameAccounts(HashMap<String, List<String>> gameAccounts) { this.gameAccounts = gameAccounts; }
+    public void setGameAccounts(HashMap<String, GameAccount> gameAccounts) { this.gameAccounts = gameAccounts; }
 
 //    public void appendGameAccount(String game, String account){ this.gameAccounts.put(game, this.gameAccounts.get(game))}
 
@@ -78,17 +79,17 @@ public class UserDto {
         return tempGame;
     }
 
+    public String getTempAccount() {return tempAccount; }
+
+    public String getTempRegion() {return tempRegion; }
+
     public void setTempGame(String tempGame) {
         this.tempGame = tempGame;
     }
 
-    public String getTempAccount() {
-        return tempAccount;
-    }
+//    public void setTempAccount(String tempAccount) {
+//        this.tempAccount = tempAccount;
+//    }
 
-    public void setTempAccount(String tempAccount) {
-        this.tempAccount = tempAccount;
-    }
-
-    public List<String> getAccount(String game){return this.gameAccounts.get(game); }
+    public GameAccount getTempAccount(String game){return this.gameAccounts.get(game); }
 }

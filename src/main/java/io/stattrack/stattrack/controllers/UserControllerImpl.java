@@ -19,8 +19,6 @@ public class UserControllerImpl implements UserController {
 
   @Autowired
     UserRepository userRepository;
-import io.stattrack.stattrack.services.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
     public UserControllerImpl (UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -46,10 +44,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 //        currentSession.createUserSession(user);
 
 
-        if (userService.checkIfExists(user.getTempGame(), user.getTempAccount(), (UserDto) session.getAttribute("user")))
+        if (userService.checkIfExists(user.getTempGame(), user.getTempAccount(), user.getTempRegion(), (UserDto) session.getAttribute("user")))
             return "linkaccount_fail";
 
-        userService.linkGameAccount(user.getTempGame(), user.getTempAccount(), (UserDto) session.getAttribute("user"));
+        userService.linkGameAccount(user.getTempGame(), user.getTempAccount(), user.getTempRegion(), (UserDto) session.getAttribute("user"));
 
         return "linkaccount_success";
 
