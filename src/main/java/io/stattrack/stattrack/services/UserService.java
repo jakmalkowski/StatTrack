@@ -20,11 +20,11 @@ public interface UserService {
 
 //    void setAccounts(UserModel userModel, HashMap<String, String> accounts);
 
-    public UserModel linkGameAccount(UserDto user);
+    public UserModel linkGameAccount(String newGame, String newAccount, UserDto user);
 
     public UserModel unlinkGameAccount(UserDto user);
 
     public void changeBio(String bio);
 
-    public boolean checkIfExists(UserDto user);
+    public boolean checkIfExists(String newGame, String newAccount, UserDto user);
 }

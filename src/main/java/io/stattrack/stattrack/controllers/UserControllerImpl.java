@@ -1,5 +1,6 @@
 package io.stattrack.stattrack.controllers;
 import io.stattrack.stattrack.dto.UserDto;
+import io.stattrack.stattrack.models.UserModel;
 import io.stattrack.stattrack.models.UserRepository;
 import io.stattrack.stattrack.services.SessionService;
 import io.stattrack.stattrack.services.UserServiceImpl;
@@ -44,11 +45,10 @@ public class UserControllerImpl implements UserController {
 //        currentSession.createUserSession(user);
 
 
-        if (userService.checkIfExists((UserDto) session.getAttribute("user")))
+        if (userService.checkIfExists(user.getTempGame(), user.getTempAccount(), (UserDto) session.getAttribute("user")))
             return "linkaccount_fail";
 
-
-        userService.linkGameAccount((UserDto) session.getAttribute("user"));
+        userService.linkGameAccount(user.getTempGame(), user.getTempAccount(), (UserDto) session.getAttribute("user"));
 
         return "linkaccount_success";
 

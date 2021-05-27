@@ -44,29 +44,32 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public UserModel linkGameAccount(UserDto user) {
+    public UserModel linkGameAccount(String newGame, String newAccount, UserDto user) {
         HashMap<String, List<String>> gameAccounts = user.getGameAccounts();
-        UserModel userModel = new UserModel(user);
 
         if(gameAccounts == null){                                     //first ever account link
             HashMap<String, List<String>> newAccounts = new HashMap<>();
             ArrayList<String> newList = new ArrayList<>();
-            newList.add(user.getTempAccount());
-            newAccounts.put(user.getTempGame(), newList);
-            user.setGameAccounts(newAccounts);
+            newList.add(newAccount);
+            newAccounts.put(newGame, newList);
+            gameAccounts = newAccounts;
         }
-        else if(!gameAccounts.containsKey(user.getTempGame())){                  //first account link to this game
+        else if(!gameAccounts.containsKey(newGame)){                  //first account link to this game
             ArrayList<String> newList = new ArrayList<>();
-            newList.add(user.getTempAccount());
-            gameAccounts.put(user.getTempGame(), newList);
+            newList.add(newAccount);
+            gameAccounts.put(newGame, newList);
         }
         else{                                                           //other account(s) for this game already linked
-            gameAccounts.get(user.getTempGame()).add(user.getTempAccount());
+            gameAccounts.get(newGame).add(newAccount);
         }
 
+        user.setGameAccounts(gameAccounts);
+
 //        System.out.println("Before:" + userModel.getAccounts());
-        userModel.setAccounts(gameAccounts);                            //set user accounts to updated account list
+        UserModel userModel = new UserModel(user);                            //set user accounts to updated account list
 //        System.out.println("After:" + userModel.getAccounts());
+        userRepository.save(userModel);
+
         return userModel;
     }
 
@@ -86,10 +89,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkIfExists(UserDto user) {
+    public boolean checkIfExists(String newGame, String newAccount, UserDto user) {
         if(user.getGameAccounts() != null)
-            if(user.getGameAccounts().containsKey(user.getTempGame()))
-                if(user.getAccount(user.getTempGame()).contains(user.getTempAccount()))
+            if(user.getGameAccounts().containsKey(newGame))
+                if(user.getAccount(newGame).contains(newAccount))
                     return true;
 
         return false;

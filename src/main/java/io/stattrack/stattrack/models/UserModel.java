@@ -33,9 +33,11 @@ public class UserModel {
 
     public UserModel(UserDto userDto) {
 //        super();
+        this.id = userDto.getId();
         this.uname = userDto.getUname();
         this.password = userDto.getPassword();
         this.email = userDto.getEmail();
+        this.accounts = userDto.getGameAccounts();
     }
 
     public String getId() {
