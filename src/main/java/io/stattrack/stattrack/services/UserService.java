@@ -22,9 +22,9 @@ public interface UserService {
 
     UserModel linkGameAccount(String newGame, String newAccount, String newRegion, UserDto user);
 
-    public UserModel unlinkGameAccount(UserDto user);
+    UserModel unlinkGameAccount(String newGame, String newAccount, UserDto user);
 
     public void changeBio(String bio);
 
-    boolean checkIfExists(String newGame, String newAccount, String newRegion, UserDto user);
+    boolean checkIfExists(String newGame, String newAccount, UserDto user);
 }

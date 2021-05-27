@@ -25,12 +25,9 @@ public class UserControllerImpl implements UserController {
 
     @GetMapping(value="/linkaccount")
     public String linkAccountPage(Model model, HttpSession session) {
-//        UserServiceImpl userService = new UserServiceImpl(userRepository);
-//        HttpSession currentSession = session.getSession();
-//        currentSession.setAttribute("user", userModel);
+
         UserDto user = new UserDto();
         model.addAttribute("user", user);
-
 
         return "linkaccount";
     }
@@ -39,12 +36,10 @@ public class UserControllerImpl implements UserController {
     @Override
     @RequestMapping(value = "/linkaccount", method = RequestMethod.POST)
     public String linkAccountFunc(@ModelAttribute("user") UserDto user, HttpSession session) {
+
         UserServiceImpl userService = new UserServiceImpl(userRepository);
 
-//        currentSession.createUserSession(user);
-
-
-        if (userService.checkIfExists(user.getTempGame(), user.getTempAccount(), user.getTempRegion(), (UserDto) session.getAttribute("user")))
+        if (userService.checkIfExists(user.getTempGame(), user.getTempAccount(), (UserDto) session.getAttribute("user")))
             return "linkaccount_fail";
 
         userService.linkGameAccount(user.getTempGame(), user.getTempAccount(), user.getTempRegion(), (UserDto) session.getAttribute("user"));
@@ -54,14 +49,27 @@ public class UserControllerImpl implements UserController {
     }
 
     @GetMapping(value="/unlinkaccount")
-    public String unlinkAccountPage(Model userModel, HttpSession session) {
+    public String unlinkAccountPage(Model model, HttpSession session) {
+
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
+
         return "unlinkaccount";
     }
 
     @Override
     @RequestMapping(value = "/unlinkaccount", method = RequestMethod.POST)
     public String unlinkAccountFunc(@ModelAttribute("user") UserDto user, HttpSession session){
-        return "unlinkaccount";
+
+        UserServiceImpl userService = new UserServiceImpl(userRepository);
+
+        if (!userService.checkIfExists(user.getTempGame(), user.getTempAccount(), (UserDto) session.getAttribute("user")))
+            return "unlinkaccount_fail";
+
+        userService.unlinkGameAccount(user.getTempGame(), user.getTempAccount(), (UserDto) session.getAttribute("user"));
+        return "unlinkaccount_success";
+
+
     }
 
     @Override
