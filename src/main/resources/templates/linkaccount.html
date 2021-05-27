@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Link Account</title>
+</head>
+<form action="#" th:action="@{/linkaccount}" th:object="${user}" method="post">
+    <label for="tempGame">Game</label>
+    <input type="text" th:field="*{tempGame}" id="tempGame">
+    <label for="tempAccount">Account</label>
+    <input type="text" th:field="*{tempAccount}" id="tempAccount">
+    <input type="submit" value="Link Account">
+</form>
+</html>

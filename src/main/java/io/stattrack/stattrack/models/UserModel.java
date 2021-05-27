@@ -10,6 +10,7 @@ import org.springframework.data.annotation.Id;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import java.util.Map;
 
 public class UserModel {
@@ -38,9 +39,11 @@ public class UserModel {
 
     public UserModel(UserDto userDto) {
 //        super();
+        this.id = userDto.getId();
         this.uname = userDto.getUname();
         this.password = userDto.getPassword();
         this.email = userDto.getEmail();
+        this.accounts = userDto.getGameAccounts();
     }
 
     public RecentGames getLast30Games() {
@@ -150,6 +153,7 @@ public class UserModel {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     public HashMap<String, GameAccount> getAccounts() {
         return accounts;
