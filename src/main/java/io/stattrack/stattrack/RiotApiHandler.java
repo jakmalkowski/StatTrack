@@ -77,7 +77,7 @@ public final class RiotApiHandler {
     String correctRegion(String region){
         switch (region){
             case "euw1":
-            case "eune":
+            case "eun1":
                 return "europe";
             case "ru" :
             case "kr" :

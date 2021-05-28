@@ -37,7 +37,7 @@ public class ApiHandlingTests {
             RiotApiHandler userTest=RiotApiHandler.getInstance();
             Path testfile = Path.of("matchinfo.txt");
             String fin = Files.readString(testfile);
-            Assert.assertEquals(fin,userTest.getMatchDetails("EUN1_2775220260","europe"));
+            Assert.assertEquals(fin,userTest.getMatchDetails("EUN1_2775220260","eun1"));
         }
         catch (IOException exception){
             exception.printStackTrace();
@@ -50,7 +50,7 @@ public class ApiHandlingTests {
             RiotApiHandler userTest=RiotApiHandler.getInstance();
             Path testfile = Path.of("matchinfo.txt");
             String fin = Files.readString(testfile);
-            Assert.assertNotEquals(fin,userTest.getMatchDetails("EUN1_2775220260","europe"));
+            Assert.assertNotEquals(fin,userTest.getMatchDetails("EUN1_2775220260","eun1"));
         }
         catch (IOException exception){
             exception.printStackTrace();
