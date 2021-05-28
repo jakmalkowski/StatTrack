@@ -5,7 +5,7 @@ import io.stattrack.stattrack.models.UserModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+//Dto reflection of our userclass, used to transfer data in and out during sessions
 public class UserDto {
     private String id;
     private String uname;

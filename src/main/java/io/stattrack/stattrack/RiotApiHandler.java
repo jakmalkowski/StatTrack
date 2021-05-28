@@ -20,7 +20,7 @@ public final class RiotApiHandler {
 
     public RiotApiHandler(){
     }
-
+    //Simlpleton
     public static RiotApiHandler getInstance(){
         RiotApiHandler result = instance;
         if (result!=null){
@@ -34,14 +34,13 @@ public final class RiotApiHandler {
         }
     }
 
-
+    //Formatting usernames for the API request
     public String nameCorrection(String summonerName){
         return summonerName.toLowerCase(Locale.ROOT).replaceAll(" ","");
     }
 
-
+    //returns users encryptedID, usefull for pulling advanced info from api
     public String getEncryptedSummID(String summonerName,String region){
-        //Hardcoded for now, I'll set it up later, consists of https://{server}.api{...}/by-name/{SummonerName}{ApiKey}
         String correctSummoner = nameCorrection(summonerName);
         String requestBase="https://"+region+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+correctSummoner+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
@@ -49,6 +48,7 @@ public final class RiotApiHandler {
         Map<String,String> map=gson.fromJson(json,new TypeToken<Map<String,String>>(){}.getType());
         return map.get("id");
     }
+    //DOES NOT WORK ITS NOT MY FAULT THEY ARE REWORKING THE API AND DID NOT PROVIDE A DTO
     public String getRankedInfo(String region,String summonerName){
         //I've gotta implement the entire DTO interface to work with this one
         String requestBase="https://"+region+".api.riotgames.com/lol/league/v4/entries/by-summoner/"+getEncryptedSummID(summonerName,region)+"?api_key="+tempKey;
@@ -56,7 +56,7 @@ public final class RiotApiHandler {
         Gson gson = new Gson();
         return json;
     }
-
+    //returns personalUserID wchich is universal for all regions
     public String getEncryptedPUUID(String summonerName,String region) {
 
         String correctSummoner=summonerName.toLowerCase(Locale.ROOT).replaceAll(" ","");
@@ -68,12 +68,14 @@ public final class RiotApiHandler {
         return map.get("puuid");
     }
 
+    //returns data of a leaguematch, provided with matchID and serverRegion
     public LeagueMatch  getMatchDetails(String matchID,String region){
         region=correctRegion(region);
         String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
         return new LeagueMatch(json);
     }
+    //Parses regions in specific ways if needed
     String correctRegion(String region){
         switch (region){
             case "euw1":
@@ -84,8 +86,9 @@ public final class RiotApiHandler {
                 return "asia";
             case "na1" : return "americas";
         }
-        return null;
+        return region;
     }
+    //Returns the stats of player from a game
     public PlayerStats getPlayerMatchStats(String summonerName,String matchID,String region){
         region=correctRegion(region);
         String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
@@ -98,6 +101,7 @@ public final class RiotApiHandler {
         }
         return null;
     }
+    //Used to send requests to the API, it is's only job, you know, like S in the SOLID
     public String getGsonBase(String requestBase){
         try{
             StringBuilder json= new StringBuilder();
@@ -116,6 +120,7 @@ public final class RiotApiHandler {
         }
         return "";
     }
+    //returns last 30 games played on an account
     public ArrayList<String> getMatchlist(String summonerName,String region)
     {
         String correctSummoner = nameCorrection(summonerName);

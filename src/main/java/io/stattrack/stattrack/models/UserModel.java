@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.Map;
-
+//Our main userModel that serves as a template for MongoDB documents
 public class UserModel {
 
     @Id
@@ -56,7 +56,7 @@ public class UserModel {
     public void setLast30Games(RecentGames last30Games) {
         this.last30Games = last30Games;
     }
-
+    //Basic function updating our Database and data available for display
     public void updateLoLStatistics(){
         if(this.statistics==null){
             this.statistics=new HashMap<>();
@@ -110,6 +110,7 @@ public class UserModel {
         this.last30Games.setKDA((avgKills+avgAssists/avgDeaths)/30);
         this.last30Games.setWinrate(winrate/30);
     }
+    //selfExplanatory
     String mostPopular(ArrayList<String> list){
         Map<String,Integer> map = new HashMap<>();
         for(String s : list){

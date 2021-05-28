@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.*;
 
+//DataTransferObject, it basically parses an enormous string into objects we can work with
 public class LeagueMatch {
     public LinkedTreeMap<String,Object> metaData;
     public ArrayList<String> participantsID;

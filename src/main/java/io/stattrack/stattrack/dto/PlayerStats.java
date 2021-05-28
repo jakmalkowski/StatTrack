@@ -2,7 +2,7 @@ package io.stattrack.stattrack.dto;
 
 
 import com.google.gson.internal.LinkedTreeMap;
-
+//Container for playerStats from a single match,selfexplanatory
 public class PlayerStats {
     String summonerName;
     String puuID;

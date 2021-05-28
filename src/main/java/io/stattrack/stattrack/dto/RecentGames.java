@@ -1,5 +1,5 @@
 package io.stattrack.stattrack.dto;
-
+//Container for keeping information of the last30 games played by an account
 public class RecentGames{
     float KDA;
     float avgKills;
