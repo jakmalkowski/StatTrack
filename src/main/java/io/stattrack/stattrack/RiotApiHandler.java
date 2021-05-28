@@ -16,7 +16,7 @@ import java.util.*;
 //Singleton with thread safety
 public final class RiotApiHandler {
     private static volatile RiotApiHandler instance;
-    static final String tempKey="RGAPI-dfb4ee5e-266d-4b39-8f02-a05d25d8c95c";
+    static final String tempKey="RGAPI-9c4c3902-77ef-44f0-9ef4-1fcb47ab4694";
 
     public RiotApiHandler(){
     }
@@ -69,17 +69,25 @@ public final class RiotApiHandler {
     }
 
     public LeagueMatch  getMatchDetails(String matchID,String region){
-        //Hardcoded for now
-        if (region.equals("eun1"))
-            region = "europe";
+        region=correctRegion(region);
         String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
         return new LeagueMatch(json);
     }
-
+    String correctRegion(String region){
+        switch (region){
+            case "euw1":
+            case "eun1":
+                return "europe";
+            case "ru" :
+            case "kr" :
+                return "asia";
+            case "na1" : return "americas";
+        }
+        return null;
+    }
     public PlayerStats getPlayerMatchStats(String summonerName,String matchID,String region){
-        if (region.equals("eun1"))
-            region = "europe";
+        region=correctRegion(region);
         String requestBase ="https://"+region+".api.riotgames.com/lol/match/v5/matches/"+matchID+"?api_key="+tempKey;
         String json=getGsonBase(requestBase);
         LeagueMatch match = new LeagueMatch(json);

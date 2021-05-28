@@ -2,6 +2,7 @@ package io.stattrack.stattrack.dto;
 
 import io.stattrack.stattrack.models.UserModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,8 +16,16 @@ public class UserDto {
     private String tempAccount;
     private String tempRegion;
     private HashMap<String, GameAccount> gameAccounts;
+    private ArrayList<String> displayedStats;
 
 
+    public ArrayList<String> getDisplayedStats() {
+        return displayedStats;
+    }
+
+    public void setDisplayedStats(ArrayList<String> displayedStats) {
+        this.displayedStats = displayedStats;
+    }
 
     public UserDto(UserModel userModel) {
         this.id = userModel.getId();
@@ -24,6 +33,7 @@ public class UserDto {
         this.password = userModel.getPassword();
         this.email = userModel.getEmail();
         this.gameAccounts = userModel.getAccounts();
+        this.displayedStats = userModel.getDisplayStatistics();
     }
 
     public UserDto() {

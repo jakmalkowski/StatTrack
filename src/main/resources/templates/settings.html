@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
     <meta charset="UTF-8">
     <title>StatTrack</title>
-    <link th:href="@{/css/mdb.min.css}" rel="stylesheet" />
-    <link th:href="@{/css/custom/login.css}" rel="stylesheet" />
+    <link th:href="@{/css/mdb.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/custom/login.css}" rel="stylesheet"/>
 </head>
 <div th:fragment="navbar">
 
 </div>
+</html>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar">
     <!-- Container wrapper -->
     <div class="container-fluid">
@@ -61,19 +62,25 @@
     <div class="row">
         <div class="col-6">
             <div class="login-form-1 lower">
-                    <form th:action="@{/login}" th:object="${user}" method="post">
-                        <h3 class="text-center">Login</h3>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Email *" value="" th:field="*{email}" />
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password *" value="" th:field="*{password}" />
-                        </div>
+                <div class="container">
+                    <form th:action="@{/settings}" th:object="${container}" method="post">
+                        <input type="checkbox" th:field="*{KDA}" th:checked="*{KDA} ? true" /> KDA <br/>
+                        <input type="checkbox" id="avgHeals" th:field="*{avgHealing}" th:checked="*{avgHealing} ? true" value="true"/> Average healing per game <br/>
+                        <input type="checkbox" th:field="*{avgDamageToChampions}" th:checked="*{avgDamageToChampions} ? true" value="true"/> Average damage dealt to champions per game <br/>
+                        <input type="checkbox" th:field="*{avgKills}" th:checked="*{avgKills} ? true" value="true"/> Average kills per game <br/>
+                        <input type="checkbox" th:field="*{avgAssists}" th:checked="*{avgAssists} ? true" value="true"/> Average assists per game <br/>
+                        <input type="checkbox" th:field="*{avgVisionScore}" th:checked="*{avgVisionScore} ? true" value="true"/> Average vision score <br/>
+                        <input type="checkbox" th:field="*{mostPopularRole}" th:checked="*{mostPopularRole} ? true" value="true"/> Most popular role <br/>
+                        <input type="checkbox" th:field="*{mostPopularChampion} " th:checked="*{mostPopularChampion} ? true" value="true"/> Most popular champion <br/>
+                        <input type="checkbox" th:field="*{winrate}" th:checked="*{winrate} ? true" value="true"/> Winrate in the last 30 games <br/>
+                        <input type="checkbox" th:field="*{avgDeaths}" th:checked="*{avgDeaths} ? true" value="true"/> Average deaths per game <br/>
                         <div class="form-group text-center">
-                            <input type="submit" class="btnSubmit" value="Login" />
+                            <input type="submit" class="btnSubmit" value="Submit">
                         </div>
                     </form>
-        </div>
+                </div>
+
+            </div>
         </div>
         <div class="col-6 d-flex justify-content-center text-center">
             <div class="goodText">
