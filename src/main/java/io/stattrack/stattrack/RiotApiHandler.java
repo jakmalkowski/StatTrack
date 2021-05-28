@@ -20,7 +20,7 @@ public final class RiotApiHandler {
 
     public RiotApiHandler(){
     }
-    //Simlpleton
+    //Singlpleton
     public static RiotApiHandler getInstance(){
         RiotApiHandler result = instance;
         if (result!=null){
