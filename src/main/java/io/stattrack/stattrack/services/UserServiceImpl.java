@@ -63,11 +63,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel unlinkGameAccount(UserDto user) {      //todo
+    public UserModel unlinkGameAccount(String newGame, String newAccount, UserDto user) {
         HashMap<String, GameAccount> gameAccounts = user.getGameAccounts();
+        gameAccounts.remove(newGame);
+        user.setGameAccounts(gameAccounts);
+
         UserModel userModel = new UserModel(user);
-        gameAccounts.remove(user.getTempAccount());
-        userModel.setAccounts(gameAccounts);
+        userRepository.save(userModel);
 
         return userModel;
     }
@@ -81,13 +83,10 @@ public class UserServiceImpl implements UserService {
         return user.getDisplayStatistics();
     }
     @Override
-    public boolean checkIfExists(String newGame, String newAccount, String newRegion, UserDto user) {
-        GameAccount gameAccount = new GameAccount();
-        gameAccount.setRegion(newRegion);
-        gameAccount.setUsername(newAccount);
+    public boolean checkIfExists(String newGame, String newAccount, UserDto user) {
         if(user.getGameAccounts() != null)
             if(user.getGameAccounts().containsKey(newGame))
-                if(user.getGameAccounts().containsValue(gameAccount))
+                if(user.getGameAccounts().get(newGame).getUsername().equals(newAccount))
                     return true;
 
         return false;
