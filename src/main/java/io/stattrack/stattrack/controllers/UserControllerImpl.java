@@ -1,4 +1,5 @@
 package io.stattrack.stattrack.controllers;
+import io.stattrack.stattrack.dto.SettingsContainer;
 import io.stattrack.stattrack.dto.UserDto;
 import io.stattrack.stattrack.models.UserModel;
 import io.stattrack.stattrack.models.UserRepository;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Set;
 
 @Controller
 public class UserControllerImpl implements UserController {
@@ -85,12 +89,47 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public void settings(String someString) {          //What String?
-
+    @GetMapping(value = "/settings")
+    public String settings(Model model, HttpSession session) {
+        if(!isUserLogged(session)){
+            return "/login";
+        }
+        SessionService sessionService = new SessionService(session);
+        UserDto user = sessionService.getUserDto();
+        UserServiceImpl userService = new UserServiceImpl(userRepository);
+        ArrayList<String> currentStats = userService.getUserStatistics(user);
+        SettingsContainer container = new SettingsContainer();
+        Field[] fields = container.getClass().getFields();
+        if(currentStats!= null) {
+            for (Field f : fields) {
+                if (currentStats.contains(f.getName())) {
+                    container.changeValue(f.getName());
+                }
+            }
+        }
+        model.addAttribute("container",container);
+        model.addAttribute("user",user);
+        return "settings";
     }
-
+    @PostMapping(value = "/settings")
+    public String changeSettings(@ModelAttribute("user") UserDto user ,@ModelAttribute("container") SettingsContainer container, HttpSession session) throws IllegalAccessException {
+        UserServiceImpl userService = new UserServiceImpl(userRepository);
+        ArrayList<String> updatedStats = new ArrayList<>();
+        Field[] fields = container.getClass().getFields();
+        for(Field s : fields){
+            if(s.getBoolean(container)){
+                updatedStats.add(s.getName());
+            }
+        }
+        userService.updateDisplayed((UserDto) session.getAttribute("user"),updatedStats);
+        return "settings";
+    }
     @Override
     public void mainPage() {
 
+    }
+    private boolean isUserLogged(HttpSession httpSession){
+        SessionService sessionService = new SessionService(httpSession);
+        return sessionService.getUserDto() != null;
     }
 }

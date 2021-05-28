@@ -23,12 +23,14 @@ public class UserModel {
     RecentGames last30Games;
     HashMap<String, GameAccount> accounts;
     Instant accCreationInstant = Instant.now();
-    HashMap<String, ArrayList<String>> displayStatistics;
+    ArrayList<String> displayStatistics;
     Instant updateInstant;
     HashMap<String, PlayerStats> statistics;
     String bio;
 
-    public UserModel() {}
+    public UserModel() {
+
+    }
 
     public UserModel(String uname, String password, String email) {
 //        super();
@@ -44,6 +46,7 @@ public class UserModel {
         this.password = userDto.getPassword();
         this.email = userDto.getEmail();
         this.accounts = userDto.getGameAccounts();
+        this.displayStatistics = userDto.getDisplayedStats();
     }
 
     public RecentGames getLast30Games() {
@@ -170,11 +173,11 @@ public class UserModel {
         this.accCreationInstant = accCreationInstant;
     }
 
-    public HashMap<String, ArrayList<String>> getDisplayStatistics() {
+    public ArrayList<String> getDisplayStatistics() {
         return displayStatistics;
     }
 
-    public void setDisplayStatistics(HashMap<String, ArrayList<String>> displayStatistics) {
+    public void setDisplayStatistics(ArrayList<String> displayStatistics) {
         this.displayStatistics = displayStatistics;
     }
 

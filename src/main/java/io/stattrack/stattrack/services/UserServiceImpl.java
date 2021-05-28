@@ -5,10 +5,9 @@ import io.stattrack.stattrack.dto.UserDto;
 import io.stattrack.stattrack.models.UserModel;
 
 import io.stattrack.stattrack.models.UserRepository;
+import org.apache.catalina.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class UserServiceImpl implements UserService {
 
@@ -24,19 +23,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public void setDisplayed(HashMap<String, HashMap<String, ?>> args) {
-
-    }
-
-    @Override
-    public void addToDisplayed(String gameName, ArrayList<String> arrayToAdd) {
-
-    }
-
-    @Override
-    public void deleteFromDisplayed(String gameName, ArrayList<String> arrayToDelete) {
-
+    public UserModel updateDisplayed(UserDto user,ArrayList<String> upDisplayed){
+        ArrayList<String> displayed = new ArrayList<>(upDisplayed);
+        user.setDisplayedStats(displayed);
+        UserModel userModel = new UserModel(user);
+        userRepository.save(userModel);
+        return userModel;
     }
 
 //    @Override
@@ -84,7 +76,10 @@ public class UserServiceImpl implements UserService {
     public void changeBio(String bio) {
 
     }
-
+    public ArrayList<String> getUserStatistics(UserDto userDto){
+        UserModel user = userRepository.findByEmail(userDto.getEmail()).get(0);
+        return user.getDisplayStatistics();
+    }
     @Override
     public boolean checkIfExists(String newGame, String newAccount, String newRegion, UserDto user) {
         GameAccount gameAccount = new GameAccount();

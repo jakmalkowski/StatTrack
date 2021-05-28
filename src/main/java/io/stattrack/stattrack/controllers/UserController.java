@@ -2,10 +2,8 @@ package io.stattrack.stattrack.controllers;
 
 import io.stattrack.stattrack.dto.UserDto;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,8 +26,8 @@ public interface UserController {
     void logOut();
 
     void userPage();
-
-    void settings(String someString);      //What String?
+    @GetMapping(value = "/settings")
+    String settings(Model model, HttpSession session);      //What String?
 
     void mainPage();
 
