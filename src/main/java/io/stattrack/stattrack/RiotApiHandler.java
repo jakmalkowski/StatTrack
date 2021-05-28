@@ -1,7 +1,7 @@
 package io.stattrack.stattrack;
 
-import DataTransferObjects.LeagueMatch;
-import DataTransferObjects.PlayerStats;
+import io.stattrack.stattrack.dto.LeagueMatch;
+import io.stattrack.stattrack.dto.PlayerStats;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -16,7 +16,7 @@ import java.util.*;
 //Singleton with thread safety
 public final class RiotApiHandler {
     private static volatile RiotApiHandler instance;
-    static final String tempKey="RGAPI-9c4c3902-77ef-44f0-9ef4-1fcb47ab4694";
+    static final String tempKey="RGAPI-15cc1105-5552-4a8d-bba9-8d181e4cd35d";
 
     public RiotApiHandler(){
     }

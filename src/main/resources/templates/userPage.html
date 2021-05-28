@@ -62,8 +62,21 @@
 
 <div class="container main-page">
     <div class="row">
-        <div class="col-6 d-flex justify-content-center text-center" >
-<!--            <h1 th:text="logged as + ${user?.uname}"></h1>-->
+        <h1 th:text="${uname}"></h1>
+        <div class="col-6">
+            <tr th:each="element : ${data}">
+                <td th:text="${element.key}"/> :
+                <td th:text="${element.value}"/></br>
+            </tr>
+            <div class="text-center">
+                <h1 th:if="${currentUser == true}" th:text="${message}"></h1>
+                <a th:if="${currentUser == true}" href="/update">
+                    <button th:if="${currentUser == true}" type="button" class="btn">Update stats</button>
+                </a></br>
+                <a th:if="${currentUser == true}" href="/settings">
+                    <button th:if="${currentUser == true}" type="button" class="btn">Settings</button>
+                </a>
+            </div>
         </div>
         <div class="col-6 d-flex justify-content-center text-center">
             <div class="goodText">

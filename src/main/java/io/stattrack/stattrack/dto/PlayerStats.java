@@ -1,4 +1,4 @@
-package DataTransferObjects;
+package io.stattrack.stattrack.dto;
 
 
 import com.google.gson.internal.LinkedTreeMap;
@@ -57,6 +57,10 @@ public class PlayerStats {
         this.physicalDamageDealtToChapions = (Double) data.get("physicalDamageDealtToChampions");
         this.totalHeal = (Double) data.get("totalHeal");
         this.totalHealsOnTeammates = (Double) data.get("totalHealsOnTeammates");
+    }
+
+    public PlayerStats() {
+
     }
 
     public String getSummonerName() {

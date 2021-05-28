@@ -1,6 +1,6 @@
 package io.stattrack.stattrack.models;
 
-import DataTransferObjects.PlayerStats;
+import io.stattrack.stattrack.dto.PlayerStats;
 import io.stattrack.stattrack.RiotApiHandler;
 import io.stattrack.stattrack.dto.GameAccount;
 import io.stattrack.stattrack.dto.RecentGames;
@@ -46,7 +46,7 @@ public class UserModel {
         this.password = userDto.getPassword();
         this.email = userDto.getEmail();
         this.accounts = userDto.getGameAccounts();
-        this.displayStatistics = userDto.getDisplayedStats();
+        this.displayStatistics = userDto.getDisplayStatistics();
     }
 
     public RecentGames getLast30Games() {

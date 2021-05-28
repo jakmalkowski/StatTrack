@@ -1,9 +1,11 @@
 package io.stattrack.stattrack.controllers;
+import io.stattrack.stattrack.dto.RecentGames;
 import io.stattrack.stattrack.dto.SettingsContainer;
 import io.stattrack.stattrack.dto.UserDto;
 import io.stattrack.stattrack.models.UserModel;
 import io.stattrack.stattrack.models.UserRepository;
 import io.stattrack.stattrack.services.SessionService;
+import io.stattrack.stattrack.services.UserService;
 import io.stattrack.stattrack.services.UserServiceImpl;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -92,15 +96,48 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public void userPage(){
+    @GetMapping(value="/{uname}")
+    public String userPage(@PathVariable String uname, Model userModel, HttpSession session) {
+        UserServiceImpl userService = new UserServiceImpl(userRepository);
+        UserDto user = userService.getUserFromUname(uname);
+        if (user == null) return "userNotFound";
+        Map<String, String> stats = new HashMap<>();
+        RecentGames recentGames = user.getLast30Games();
+        if (recentGames != null) {
+            for (String stat : user.getDisplayStatistics()) {
+                if (stat.equals("KDA")) stats.put("KDA", String.valueOf(recentGames.getKDA()));
+                if (stat.equals("avgKills")) stats.put("avgKills", String.valueOf(recentGames.getAvgKills()));
+                if (stat.equals("avgDeaths")) stats.put("avgDeaths", String.valueOf(recentGames.getAvgDeaths()));
+                if (stat.equals("avgAssists")) stats.put("avgAssists", String.valueOf(recentGames.getAvgAssists()));
+                if (stat.equals("avgVisionScore")) stats.put("avgVisionScore", String.valueOf(recentGames.getAvgVisionScore()));
+                if (stat.equals("avgDamageToChampions")) stats.put("avgDamageToChampions", String.valueOf(recentGames.getAvgDamageToChampions()));
+                if (stat.equals("avgHealing")) stats.put("avgHealing", String.valueOf(recentGames.getAvgHealing()));
+                if (stat.equals("mostPopularRole")) stats.put("mostPopularRole", String.valueOf(recentGames.getMostPopularRole()));
+                if (stat.equals("mostPopularChampion")) stats.put("mostPopularChampion", String.valueOf(recentGames.getMostPopularChampion()));
+                if (stat.equals("winrate")) stats.put("winrate", String.valueOf(recentGames.getWinrate()));
+            }
+            userModel.addAttribute("message", "");
+        } else {
+            userModel.addAttribute("message", "Update your stats!");
+        }
+        userModel.addAttribute("uname", uname);
+        userModel.addAttribute("data", stats);
+        SessionService sessionService = new SessionService(session);
+        UserDto loggedUser = sessionService.getUserDto();
+        if (loggedUser != null && loggedUser.getUname().equals(uname)) {
+            userModel.addAttribute("currentUser", true);
+        } else {
+            userModel.addAttribute("currentUser", false);
+        }
 
+        return "userPage";
     }
 
     @Override
     @GetMapping(value = "/settings")
     public String settings(Model model, HttpSession session) {
         if(!isUserLogged(session)){
-            return "/login";
+            return "redirect:/login";
         }
         SessionService sessionService = new SessionService(session);
         UserDto user = sessionService.getUserDto();
@@ -144,7 +181,7 @@ public class UserControllerImpl implements UserController {
         {
             return "redirect:/linkaccount";
         }
-        userService.updateStats((UserDto) session.getAttribute("user"));
+        userService.updateStats(user);
         String returnString = "redirect:/" + user.getUname();
         return returnString;
     }

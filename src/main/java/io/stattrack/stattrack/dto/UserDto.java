@@ -17,6 +17,10 @@ public class UserDto {
     private String tempRegion;
     private HashMap<String, GameAccount> gameAccounts;
     private ArrayList<String> displayedStats;
+    private RecentGames last30Games;
+    private ArrayList<String> displayStatistics;
+    HashMap<String, PlayerStats> statistics;
+
 
 
     public ArrayList<String> getDisplayedStats() {
@@ -33,13 +37,31 @@ public class UserDto {
         this.password = userModel.getPassword();
         this.email = userModel.getEmail();
         this.gameAccounts = userModel.getAccounts();
-        this.displayedStats = userModel.getDisplayStatistics();
+        this.last30Games = userModel.getLast30Games();
+        this.displayStatistics = userModel.getDisplayStatistics();
+        this.statistics = userModel.getStatistics();
+
     }
 
     public UserDto() {
 
     }
 
+    public ArrayList<String> getDisplayStatistics() {
+        return displayStatistics;
+    }
+
+    public void setDisplayStatistics(ArrayList<String> displayStatistics) {
+        this.displayStatistics = displayStatistics;
+    }
+
+    public RecentGames getLast30Games() {
+        return last30Games;
+    }
+
+    public void setLast30Games(RecentGames last30Games) {
+        this.last30Games = last30Games;
+    }
 
     public String getId() {
         return id;
@@ -106,4 +128,5 @@ public class UserDto {
     }
 
     public GameAccount getTempAccount(String game){return this.gameAccounts.get(game); }
+
 }
