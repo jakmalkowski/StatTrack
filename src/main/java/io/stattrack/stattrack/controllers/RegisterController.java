@@ -39,9 +39,9 @@ public class RegisterController {
             UserModel createdUser = registerService.registerUser(user);
             SessionService sessionService = new SessionService(session);
             sessionService.createUserSession(createdUser);
-            return "register_success";
+            return "/homepage";
         }
-        return "register_failed";
+        return "/registration";
     }
 
     @GetMapping(value="/logout")
@@ -71,9 +71,9 @@ public class RegisterController {
             SessionService sessionService = new SessionService(session);
             sessionService.createUserSession(foundUser);
 
-            return "login_success";
+            return "/homepage";
         }
-        return "login_failed";
+        return "/login";
     }
 
     @GetMapping(value="/test")

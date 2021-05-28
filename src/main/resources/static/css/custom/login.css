@@ -11,8 +11,24 @@
     position: absolute;
     text-align: center;
 }
+h1{
+    font-family: 'Montserrat', sans-serif;
+}
+p{
+    font-family: 'Montserrat', sans-serif;
+}
+.a{
+    font-family: 'Montserrat', sans-serif;
+}
+.goodText{
+    font-family: 'Montserrat', sans-serif;
+}
 body {
-    background-image: url("../../images/bg.png");
+    background: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%) fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .failed {
     color: red;

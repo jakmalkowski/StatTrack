@@ -52,7 +52,7 @@ public class UserControllerImpl implements UserController {
 
         userService.linkGameAccount(user.getTempGame(), user.getTempAccount(), user.getTempRegion(), (UserDto) session.getAttribute("user"));
 
-        return "linkaccount_success";
+        return "/homepage";
 
     }
 
@@ -182,8 +182,7 @@ public class UserControllerImpl implements UserController {
             return "redirect:/linkaccount";
         }
         userService.updateStats(user);
-        String returnString = "redirect:/" + user.getUname();
-        return returnString;
+        return "redirect:/" + user.getUname();
     }
     @Override
     public void mainPage() {

@@ -5,8 +5,8 @@
 <head th:fragment="head">
     <meta charset="UTF-8">
     <title>StatTrack</title>
-    <link th:href="@{/css/mdb.min.css}" rel="stylesheet" />
-    <link th:href="@{/css/custom/login.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/mdb.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/custom/login.css}" />
 </head>
 <div th:fragment="navbar">
 
@@ -17,13 +17,13 @@
     <div class="container-fluid">
         <!-- Toggle button -->
         <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-mdb-target="#navbarSupportedContent"
+                data-mdb-toggle="collapse"
+                type="button"
         >
             <i class="fas fa-bars"></i>
         </button>
@@ -31,24 +31,24 @@
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+            <a class="navbar-brand mt-2 mt-lg-0" href="/">
                 <img
-                        th:src="@{/images/logo.png}"
+                        alt=""
                         height="50"
                         loading="lazy"
-                        alt=""
+                        th:src="@{/images/logo.png}"
                 />
             </a>
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link" href="/">UserPage</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="/settings">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Projects</a>
+                    <a class="nav-link"  href="/linkaccount">Link Account</a>
                 </li>
             </ul>
             <!-- Left links -->
@@ -63,31 +63,29 @@
 <div class="container main-page">
     <div class="row">
         <h1 th:text="${uname}"></h1>
-        <div class="col-6">
+        <div class="text-center">
+            <h1 th:if="${currentUser == true}" th:text="${message}"></h1>
+            <a href="/update" th:if="${currentUser == true}">
+                <button class="btn" th:if="${currentUser == true}" type="button">Update stats</button>
+            </a></br>
+            <a href="/settings" th:if="${currentUser == true}">
+            <button class="btn" th:if="${currentUser == true}" type="button">Settings</button>
+        </a>
+        </div>
+        <div class="col-4">
             <tr th:each="element : ${data}">
                 <td th:text="${element.key}"/> :
                 <td th:text="${element.value}"/></br>
             </tr>
-            <div class="text-center">
-                <h1 th:if="${currentUser == true}" th:text="${message}"></h1>
-                <a th:if="${currentUser == true}" href="/update">
-                    <button th:if="${currentUser == true}" type="button" class="btn">Update stats</button>
-                </a></br>
-                <a th:if="${currentUser == true}" href="/settings">
-                    <button th:if="${currentUser == true}" type="button" class="btn">Settings</button>
-                </a>
-            </div>
         </div>
         <div class="col-6 d-flex justify-content-center text-center">
             <div class="goodText">
-                <h1>StatTrack</h1>
-                <p>Application for tracking your statistics in online games</p>
+                <img
+                        th:src="@{/images/logo.png}"
+                        loading="lazy"
+                        alt=""
+                />
             </div>
-            <img
-                    th:src="@{/images/yasuoo.png}"
-                    loading="lazy"
-                    class="yasuo"
-            />
         </div>
     </div>
 

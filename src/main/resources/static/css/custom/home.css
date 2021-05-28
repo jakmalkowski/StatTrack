@@ -11,7 +11,9 @@ body {
     background-size: cover;
 }
 
-
+button{
+    padding: 50px 10px 10px;
+}
 
 .form-signin {
     width: 100%;

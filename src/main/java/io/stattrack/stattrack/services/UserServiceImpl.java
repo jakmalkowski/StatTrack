@@ -5,7 +5,6 @@ import io.stattrack.stattrack.dto.UserDto;
 import io.stattrack.stattrack.models.UserModel;
 
 import io.stattrack.stattrack.models.UserRepository;
-import org.apache.catalina.User;
 
 import java.util.*;
 
@@ -26,12 +25,11 @@ public class UserServiceImpl implements UserService {
         return userModel;
     }
 
-    public UserModel updateDisplayed(UserDto user,ArrayList<String> upDisplayed){
+    public void updateDisplayed(UserDto user, ArrayList<String> upDisplayed){
         ArrayList<String> displayed = new ArrayList<>(upDisplayed);
         user.setDisplayStatistics(displayed);
         UserModel userModel = new UserModel(user);
         userRepository.save(userModel);
-        return userModel;
     }
 
 //    @Override
