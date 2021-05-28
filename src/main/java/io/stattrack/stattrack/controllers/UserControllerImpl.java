@@ -100,7 +100,7 @@ public class UserControllerImpl implements UserController {
     @GetMapping(value = "/settings")
     public String settings(Model model, HttpSession session) {
         if(!isUserLogged(session)){
-            return "/login";
+            return "redirect:/login";
         }
         SessionService sessionService = new SessionService(session);
         UserDto user = sessionService.getUserDto();
