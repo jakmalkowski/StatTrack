@@ -1,0 +1,25 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-image: url("../../images/league.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 50px;
+    margin: 40px auto auto;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}

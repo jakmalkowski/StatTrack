@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>StatTrack</title>
+    <link th:href="@{/css/mdb.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/custom/home.css}" rel="stylesheet" />
+</head>
+
+<body class="text-center">
+    <main class="form-signin">
+        <form>
+            <img class="mb-4" th:src="@{/images/logo.png}" alt="">
+        </form>
+
+        <form th:action="@{/login}">
+            <button class="w-100 btn btn-primary btn-lg " type="submit">Sign in</button>
+        </form>
+
+        <form th:action="@{/register}">
+            <button class="w-80 btn btn-secondary btn-lg" type="submit">Register</button>
+        </form>
+    </main>
+</body>
+
+</html>
