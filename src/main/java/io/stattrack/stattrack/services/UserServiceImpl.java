@@ -98,4 +98,10 @@ public class UserServiceImpl implements UserService {
 
         return false;
     }
+
+    public UserDto getUserFromUname(String uname) {
+        List<UserModel> userList = userRepository.findByUname(uname);
+        if (userList.isEmpty()) return null;
+        return new UserDto(userList.get(0));
+    }
 }

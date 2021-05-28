@@ -25,7 +25,8 @@ public interface UserController {
 
     void logOut();
 
-    void userPage();
+    String userPage(String uname, Model userModel, HttpSession session);
+
     @GetMapping(value = "/settings")
     String settings(Model model, HttpSession session);      //What String?
 

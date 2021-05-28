@@ -1,4 +1,4 @@
-package DataTransferObjects;
+package io.stattrack.stattrack.dto;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;

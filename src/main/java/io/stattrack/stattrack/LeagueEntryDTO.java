@@ -1,7 +1,6 @@
 package io.stattrack.stattrack;
 
-import DataTransferObjects.LeagueMatch;
-import DataTransferObjects.PlayerStats;
+import io.stattrack.stattrack.dto.PlayerStats;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
