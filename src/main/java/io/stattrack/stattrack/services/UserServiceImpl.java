@@ -19,8 +19,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void updateStats() {
-
+    public UserModel updateStats(UserDto user) {
+        UserModel userModel = new UserModel(user);
+        userModel.updateLoLStatistics();
+        userRepository.save(userModel);
+        return userModel;
     }
 
     public UserModel updateDisplayed(UserDto user,ArrayList<String> upDisplayed){
@@ -81,6 +84,10 @@ public class UserServiceImpl implements UserService {
     public ArrayList<String> getUserStatistics(UserDto userDto){
         UserModel user = userRepository.findByEmail(userDto.getEmail()).get(0);
         return user.getDisplayStatistics();
+    }
+    public HashMap<String,GameAccount> getUserGameAccounts(UserDto userDto){
+        UserModel user = userRepository.findByEmail(userDto.getEmail()).get(0);
+        return user.getAccounts();
     }
     @Override
     public boolean checkIfExists(String newGame, String newAccount, UserDto user) {

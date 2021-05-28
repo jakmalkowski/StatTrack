@@ -132,6 +132,21 @@ public class UserControllerImpl implements UserController {
         userService.updateDisplayed((UserDto) session.getAttribute("user"),updatedStats);
         return "settings";
     }
+    @GetMapping(value = "/update")
+    public String update(Model model,HttpSession session){
+        if(!isUserLogged(session)){
+            return "/login";
+        }
+        SessionService sessionService = new SessionService(session);
+        UserDto user = sessionService.getUserDto();
+        UserServiceImpl userService = new UserServiceImpl(userRepository);
+        if(userService.getUserGameAccounts(user)==null)
+        {
+            return "/linkaccount";
+        }
+        userService.updateStats((UserDto) session.getAttribute("user"));
+        return "/mainPage";
+    }
     @Override
     public void mainPage() {
 

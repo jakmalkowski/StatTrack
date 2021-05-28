@@ -2,13 +2,14 @@ package io.stattrack.stattrack.services;
 
 import io.stattrack.stattrack.dto.UserDto;
 import io.stattrack.stattrack.models.UserModel;
+import org.apache.catalina.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface UserService {
 
-    public void updateStats();
+    public UserModel updateStats(UserDto user);
 
 
 //    public void setAccounts(HashMap<String, String> accounts);
