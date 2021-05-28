@@ -16,20 +16,10 @@ public class UserDto {
     private String tempAccount;
     private String tempRegion;
     private HashMap<String, GameAccount> gameAccounts;
-    private ArrayList<String> displayedStats;
     private RecentGames last30Games;
     private ArrayList<String> displayStatistics;
     HashMap<String, PlayerStats> statistics;
 
-
-
-    public ArrayList<String> getDisplayedStats() {
-        return displayedStats;
-    }
-
-    public void setDisplayedStats(ArrayList<String> displayedStats) {
-        this.displayedStats = displayedStats;
-    }
 
     public UserDto(UserModel userModel) {
         this.id = userModel.getId();

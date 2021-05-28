@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     public UserModel updateDisplayed(UserDto user,ArrayList<String> upDisplayed){
         ArrayList<String> displayed = new ArrayList<>(upDisplayed);
-        user.setDisplayedStats(displayed);
+        user.setDisplayStatistics(displayed);
         UserModel userModel = new UserModel(user);
         userRepository.save(userModel);
         return userModel;
