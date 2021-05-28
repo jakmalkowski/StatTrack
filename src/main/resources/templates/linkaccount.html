@@ -6,7 +6,9 @@
 </head>
 <form action="#" th:action="@{/linkaccount}" th:object="${user}" method="post">
     <label for="tempGame">Game</label>
-    <input type="text" th:field="*{tempGame}" id="tempGame">
+    <select name="Game" th:field="*{tempGame}" id="tempGame">
+        <option value="LeagueOfLegends">League of Legends</option>
+    </select>
     <label for="tempAccount">Account</label>
     <input type="text" th:field="*{tempAccount}" id="tempAccount">
     <label for="tempRegion">Region</label>
