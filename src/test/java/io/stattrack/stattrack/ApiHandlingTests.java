@@ -31,19 +31,6 @@ public class ApiHandlingTests {
     }
         /*Two unit tests asserting whether the Json received
         by our API matches the one provided by the RiotDev portal*/
-   @Test
-    public void getMatchDetailsTest(){
-        try {
-            RiotApiHandler userTest=RiotApiHandler.getInstance();
-            Path testfile = Path.of("matchinfo.txt");
-            String fin = Files.readString(testfile);
-            Assert.assertEquals(fin,userTest.getMatchDetails("EUN1_2775220260","eun1"));
-        }
-        catch (IOException exception){
-            exception.printStackTrace();
-        }
-   }
-
     @Test
     public void getMatchDetailsTest2(){
         try {

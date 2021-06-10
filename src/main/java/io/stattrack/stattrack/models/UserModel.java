@@ -37,6 +37,8 @@ public class UserModel {
         this.uname = uname;
         this.password = password;
         this.email = email;
+        this.displayStatistics = new ArrayList<String>();
+        displayStatistics.add("KDA");
     }
 
     public UserModel(UserDto userDto) {
@@ -47,6 +49,10 @@ public class UserModel {
         this.email = userDto.getEmail();
         this.accounts = userDto.getGameAccounts();
         this.displayStatistics = userDto.getDisplayStatistics();
+        if(displayStatistics==null){
+            displayStatistics = new ArrayList<String>();
+            displayStatistics.add("KDA");
+        }
     }
 
     public RecentGames getLast30Games() {
