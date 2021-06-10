@@ -16,11 +16,11 @@ import java.util.*;
 //Singleton with thread safety
 public final class RiotApiHandler {
     private static volatile RiotApiHandler instance;
-    static final String tempKey="RGAPI-15cc1105-5552-4a8d-bba9-8d181e4cd35d";
+    static final String tempKey="RGAPI-1272c62f-8b9b-4dc7-bce4-a1cc1a98a4b9";
 
     public RiotApiHandler(){
     }
-    //Singlpleton
+    //Singleton
     public static RiotApiHandler getInstance(){
         RiotApiHandler result = instance;
         if (result!=null){

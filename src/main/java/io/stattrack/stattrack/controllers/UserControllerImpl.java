@@ -52,7 +52,7 @@ public class UserControllerImpl implements UserController {
 
         userService.linkGameAccount(user.getTempGame(), user.getTempAccount(), user.getTempRegion(), (UserDto) session.getAttribute("user"));
 
-        return "/homepage";
+        return "homepage";
 
     }
 

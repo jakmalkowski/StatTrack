@@ -1,7 +1,7 @@
 package io.stattrack.stattrack.dto;
 //Class used when Updating user settings by UserController
 public class SettingsContainer {
-    public boolean KDA=false;
+    public boolean KDA=true;
     public boolean avgKills=false;
     public boolean avgDeaths=false;
     public boolean avgAssists=false;
