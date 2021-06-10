@@ -49,14 +49,15 @@ public class UserServiceImpl implements UserService {
             newAccounts.put(newGame, gameAccount);
             gameAccounts = newAccounts;
         }
-        else if(!gameAccounts.containsKey(newGame)){                  //first account link to this game
+        else{
+            gameAccounts.remove(newGame);
             gameAccounts.put(newGame, gameAccount);
         }
 
         user.setGameAccounts(gameAccounts);
 
 //        System.out.println("Before:" + userModel.getAccounts());
-        UserModel userModel = new UserModel(user);                            //set user accounts to updated account list
+        UserModel userModel = new UserModel(user);                            //set user account to updated account
 //        System.out.println("After:" + userModel.getAccounts());
         userRepository.save(userModel);
 

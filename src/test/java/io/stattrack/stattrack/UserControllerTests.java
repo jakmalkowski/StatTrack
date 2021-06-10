@@ -2,7 +2,9 @@
 //
 //import io.stattrack.stattrack.controllers.UserController;
 //import io.stattrack.stattrack.controllers.UserControllerImpl;
+//import io.stattrack.stattrack.dto.UserDto;
 //import io.stattrack.stattrack.models.UserModel;
+//import io.stattrack.stattrack.models.UserRepository;
 //import io.stattrack.stattrack.services.UserService;
 //import io.stattrack.stattrack.services.UserServiceImpl;
 //import org.junit.Assert;
@@ -10,7 +12,9 @@
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 //
+//import javax.servlet.http.HttpSession;
 //import java.util.HashMap;
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -19,101 +23,29 @@
 //    private UserModel userModel;
 //    private UserService userService;
 //    private UserController userController;
-//    //    private UserView UserView;            //todo: how to fetch UserView?
+//    private UserDto userDto;
+//    UserRepository userRepository;
+//    HttpSession userSession;
+//    //    private UserView UserView;
 //
 //    @Before
 //    public void init() {
-//        this.userModel = new UserModel();
-//        this.userService = new UserServiceImpl(userModel);      //fixme: how to get correct userModel?
-//        this.userController = new UserControllerImpl(userService);
+//        this.userModel = new UserModel("uname", "password", "email");
+//        userModel.setId("test");
+//        this.userService = new UserServiceImpl(userRepository);
+//        this.userDto = new UserDto(userModel);
+//        userSession =
+//
+//
 //    }
 //
-//    @Test
-//    public void linkCSGOAccountKeyTrue() {
-//        String game1 = "CSGO", game2 = "LOL";
-//        String account1 = "DoomSlayer420", account2 = "Anomaly";
-//
-//        userController.linkAccount(game1, account1);
-//
-//        Assert.assertTrue(this.userModel.getAccounts().containsKey(game1));          //Check if key was inserted
-//    }
-//
-//    @Test
-//    public void linkCSGOAccountKeyFalse() {
-//        String game1 = "CSGO", game2 = "LOL";
-//        String account1 = "DoomSlayer420", account2 = "Anomaly";
-//
-//        userController.linkAccount(game1, account1);
-//
-//        Assert.assertFalse(this.userModel.getAccounts().containsKey(game2));          //Check if wrong key was inserted
-//    }
-//
-//    @Test
-//    public void linkCSGOAccountValueTrue() {
-//        String game1 = "CSGO", game2 = "LOL";
-//        String account1 = "DoomSlayer420", account2 = "Anomaly";
-//
-//        userController.linkAccount(game1, account1);
-//
-//        Assert.assertTrue(this.userModel.getAccounts().containsValue(account1));     //Check if correct value was inserted
-//    }
-//
-//    @Test
-//    public void linkCSGOAccountValueFalse() {
-//        String game1 = "CSGO", game2 = "LOL";
-//        String account1 = "DoomSlayer420", account2 = "Anomaly";
-//
-//        userController.linkAccount(game1, account1);
-//
-//        Assert.assertTrue(this.userModel.getAccounts().containsValue(account2));     //Check if wrong value was inserted
-//    }
-//
-//    @Test
-//    public void linkCSGOAccountMapping() {
-//        HashMap<String, String> accounts = new HashMap<>();
-//        String game1 = "CSGO", game2 = "LOL";
-//        String account1 = "DoomSlayer420", account2 = "Anomaly";
-//
-//        accounts.put(game1, account1);
-//        userController.linkAccount(game1, account1);
-//
-//        Assert.assertEquals(accounts.get(game1), this.userModel.getAccounts().get(game1));   //Check if mapping is correct
-//    }
-//
-//    @Test
-//    public void linkCSGOAccountMappingMultiple1() {
-//        HashMap<String, String> accounts = new HashMap<>();
-//        String game1 = "CSGO", game2 = "LOL";
-//        String account1 = "DoomSlayer420", account2 = "Anomaly";
-//
-//        accounts.put(game1, account1);
-//        accounts.put(game2, account2);
-//        userController.linkAccount(game1, account1);
-//        userController.linkAccount(game2, account2);
-//
-//        Assert.assertEquals(accounts.get(game1), this.userModel.getAccounts().get(game1));   //Check if mapping is correct
-//    }
-//
-//    @Test
-//    public void linkCSGOAccountMappingMultiple2() {
-//        HashMap<String, String> accounts = new HashMap<>();
-//        String game1 = "CSGO", game2 = "LOL";
-//        String account1 = "DoomSlayer420", account2 = "Anomaly";
-//
-//        accounts.put(game1, account1);
-//        accounts.put(game2, account2);
-//        userController.linkAccount(game1, account1);
-//        userController.linkAccount(game2, account2);
-//
-//        Assert.assertNotEquals(accounts.get(game1), this.userModel.getAccounts().get(game2));   //Check if mapping is wrong
-//    }
 //
 //    @Test
 //    public void linkLOLAccountKeyTrue() {
 //        String game = "LOL";
 //        String account = "Amon Gus";
 //
-//        userController.linkAccount(game, account);
+//        userController.linkAccountFunc(game, account);
 //
 //        Assert.assertTrue(this.userModel.getAccounts().containsKey(game));          //Check if correct key was inserted
 //    }
