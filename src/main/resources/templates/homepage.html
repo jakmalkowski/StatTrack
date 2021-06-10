@@ -45,6 +45,14 @@
                     <a class="nav-link" href="/settings">Settings</a>
                 </li>
             </ul>
+            <input type="text" id="accountName">
+            <input type="submit" onclick="redirectToUserPage()" value="Find">
+            <script>
+                function redirectToUserPage() {
+                    var userName = document.getElementById("accountName").value;
+                    window.location.href="http://localhost:8080/" + userName;
+                }
+            </script>
             <!-- Left links -->
         </div>
         <!-- Collapsible wrapper -->
